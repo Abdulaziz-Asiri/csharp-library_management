@@ -1,7 +1,10 @@
 namespace sda_onsite_2_csharp_library_management.src
 {
-    public class Base
+
+    public class Books: BaseEntity
     {
         
+        string? title { get; set; }
+
     }
 }

@@ -12,14 +12,14 @@ Your job is to model this system using classes, interfaces, and/or abstract clas
 
 1. Create Basic Classes:
 
-- Book with properties like id, title, created date.
-- User with id, name, created date.
-- Library to manage books and users.
+- [x] Book with properties like id, title, created date.
+- [x] User with id, name, created date.
+- [x] Library to manage books and users.
 
 2. Simple Inheritance:
 
-- Based on the common features between User and Book, create a base class for them to inherit from.
-- Id could be of type `Guid`, generated inside constructor. Date, if null, will be set to current date. Only title/name is required.
+- [x] Based on the common features between User and Book, create a base class for them to inherit from.
+- [x] Id could be of type `Guid`, generated inside constructor. Date, if null, will be set to current date. Only title/name is required.
 
 3. Library has features
 
@@ -28,6 +28,7 @@ Your job is to model this system using classes, interfaces, and/or abstract clas
 - Find users by name
 - Add new book/user to the library
 - Delete book/user by id
+- use DTO
 
 4. Use all the features above in `Program.cs`
 
