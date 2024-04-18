@@ -23,11 +23,11 @@ Your job is to model this system using classes, interfaces, and/or abstract clas
 
 3. Library has features
 
-- Get all books/users with pagination, sorted by created date.
-- Find books by title
-- Find users by name
-- Add new book/user to the library
-- Delete book/user by id
+- [x] Get all books/users with pagination, sorted by created date.
+- [x] Find books by title
+- [x] Find users by name
+- [x] Add new book/user to the library
+- [xt] Delete book/user by id
 - use DTO
 
 4. Use all the features above in `Program.cs`

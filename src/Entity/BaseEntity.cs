@@ -8,6 +8,7 @@ namespace sda_onsite_2_csharp_library_management.src
         public BaseEntity(DateTime? dateValue = null)
         {
             id = Guid.NewGuid();
+            
             dateCreated = (DateTime)(dateValue == null ? DateTime.Now : dateValue);
         }
 
