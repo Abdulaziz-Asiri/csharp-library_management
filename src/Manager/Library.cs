@@ -13,7 +13,7 @@ namespace sda_onsite_2_csharp_library_management.src
         {
             Book? findBooks = _books.Find(book => book.GetTitle() == title);
 
-            if(findBooks != null)
+            if (findBooks != null)
             {
                 Console.WriteLine($"The Book '{findBooks.GetTitle()}' Founded");
             }
@@ -35,34 +35,38 @@ namespace sda_onsite_2_csharp_library_management.src
                 Console.WriteLine("Book already exists");
             }
         }
-        //TODO
+
         public void DeleteBook(Guid bookId)
         {
             Book? findBook = _books.Find(book => book.GetId() == bookId);
-            if(findBook != null)
+            if (findBook != null)
             {
                 _books.Remove(findBook);
                 Console.WriteLine($"The book {findBook.GetTitle()} has been Deleted  seccessfully \n ");
             }
-            else{
+            else
+            {
                 Console.WriteLine("The book you want to delete is not exist");
             }
         }
         public void GetBooks(int page) //page number as parameter
         {
             var Offset = 3; // Item per page
-            var itemPerPage = (page -1 ) * Offset; // 
-            
-        var findBook = _books.Select(book => book.GetTitle())
-                            .Skip(itemPerPage) // skip the
-                            .Take(Offset);
-        foreach (var item in findBook)
-        {
-        Console.WriteLine($"Book Title {item}");
+            var itemPerPage = (page - 1) * Offset; // 
 
+
+            var findBook = _books.OrderBy(book => book.GetDateCreated())
+                                .Select(book => book.GetTitle())
+                                .Skip(itemPerPage) // skip the
+                                .Take(Offset);
+
+            foreach (var book in findBook)
+            {
+
+                Console.WriteLine($"Book:{book}\n");
+            }
         }
-    }
-        
+
         public void FindUser(string username)
         {
             User? findUser = _users.Find(user => user.GetName() == username);
@@ -70,7 +74,8 @@ namespace sda_onsite_2_csharp_library_management.src
             if (findUser != null)
             {
                 Console.WriteLine($"The User {findUser.GetName()} Founded");
-            }else
+            }
+            else
             {
                 Console.WriteLine("The user not found");
             }
@@ -90,8 +95,9 @@ namespace sda_onsite_2_csharp_library_management.src
                 Console.WriteLine("User does not exist");
             }
         }
-        
-        public void DeleteUser(Guid userId){
+
+        public void DeleteUser(Guid userId)
+        {
 
             User? findUser = _users.Find(user => user.GetId() == userId);
             if (findUser != null)
@@ -104,14 +110,14 @@ namespace sda_onsite_2_csharp_library_management.src
                 Console.WriteLine("The user you want to delete is not exist");
             }
         }
-
         public void GetUesr(int page)
         {
             var Offset = 3; // Item per page
             var itemPerPage = (page - 1) * Offset; // 
 
-            var finduser = _users.Select(user => user.GetName())
-                                .Skip(itemPerPage) // skip the
+            var finduser = _users.OrderBy(user => user.GetDate())
+                                .Select(user => user.GetName())
+                                .Skip(itemPerPage) // skip the the item depending on the itemPerPage value
                                 .Take(Offset);
             foreach (var item in finduser)
             {

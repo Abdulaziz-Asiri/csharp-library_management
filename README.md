@@ -27,7 +27,7 @@ Your job is to model this system using classes, interfaces, and/or abstract clas
 - [x] Find books by title
 - [x] Find users by name
 - [x] Add new book/user to the library
-- [xt] Delete book/user by id
+- [x] Delete book/user by id
 - use DTO
 
 4. Use all the features above in `Program.cs`

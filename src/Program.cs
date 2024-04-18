@@ -7,7 +7,7 @@ internal class Program
 {
     private static void Main()
     {
-        
+
         Library library = new Library();
         var user1 = new User("Alice", new DateTime(2023, 1, 1));
         var user2 = new User("Bob");
@@ -33,36 +33,36 @@ internal class Program
         var book11 = new Book("Hamlet", new DateTime(2023, 11, 1));
 
         library.AddBooks(book1);
-        library.AddBooks(book2);
-        library.AddBooks(book3);
         library.AddBooks(book4);
+        library.AddBooks(book9);
+        library.AddBooks(book2);
         library.AddBooks(book5);
         library.AddBooks(book6);
         library.AddBooks(book7);
         library.AddBooks(book8);
-        library.AddBooks(book9);
+        library.AddBooks(book3);
         library.AddBooks(book10);
         library.AddBooks(book11);
-        
+
         library.FindBook("The Great Gatsby");
         library.DeleteBook(book1.GetId());
-        library.GetBooks(1);
         Console.WriteLine("---------------Page 1----------------");
-        library.GetBooks(2);
+        library.GetBooks(1);
         Console.WriteLine("---------------Page 2----------------");
-        library.GetBooks(3);
+        library.GetBooks(2);
         Console.WriteLine("---------------Page 3----------------");
-        
+        library.GetBooks(3);
+
 
 
         library.AddUser(user1);
-        library.AddUser(user2);
-        library.AddUser(user3);
-        library.AddUser(user4);
         library.AddUser(user5);
         library.AddUser(user6);
         library.AddUser(user7);
+        library.AddUser(user4);
         library.AddUser(user8);
+        library.AddUser(user2);
+        library.AddUser(user3);
         library.AddUser(user9);
         library.AddUser(user10);
 
@@ -73,25 +73,7 @@ internal class Program
         Console.WriteLine("---------------Page 3----------------");
         library.GetUesr(3);
         library.FindUser("Alic");
-        library.DeleteUser(user1.GetId());
-
-
-
-
+        library.DeleteUser(user1.GetId()); // deleting the user by its id
     }
-
-
-
-        
-
-
-
-
-        // Console.WriteLine(user1.ToString());
-        // Console.WriteLine(user2.ToString());
-        // Console.WriteLine("-------------------------------");
-        // Console.WriteLine("-------------------------------");
-        // Console.WriteLine(book2.ToString());
-
 }
 
