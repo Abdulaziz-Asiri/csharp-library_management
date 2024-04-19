@@ -1,6 +1,7 @@
 using System.ComponentModel;
 using System.Xml.XPath;
 using Microsoft.VisualBasic;
+using sda_onsite_2_csharp_library_management.src.service;
 
 namespace sda_onsite_2_csharp_library_management.src
 {
@@ -8,6 +9,11 @@ namespace sda_onsite_2_csharp_library_management.src
     {
         public List<Book> _books = [];
         private List<User> _users = [];
+        private EmailNotificationService _emailNotificationService;
+        public Library(EmailNotificationService emailNotificationService)
+        {
+            _emailNotificationService = emailNotificationService;
+        }
 
         public void FindBook(string title)
         {
@@ -28,11 +34,13 @@ namespace sda_onsite_2_csharp_library_management.src
             if (!_books.Contains(newBook))
             {
                 _books.Add(newBook);
+                _emailNotificationService.SendNotificationOnSucess(newBook.GetTitle(), "Book", "added");
                 //  Console.WriteLine($"Book Add Seccessed\n{newBook} ");
             }
             else
             {
-                Console.WriteLine("Book already exists");
+                _emailNotificationService.SendNotificationOnFailure(newBook.GetTitle(), "Book", "adding");
+                // Console.WriteLine("Book already exists");
             }
         }
 
@@ -42,11 +50,13 @@ namespace sda_onsite_2_csharp_library_management.src
             if (findBook != null)
             {
                 _books.Remove(findBook);
-                Console.WriteLine($"The book {findBook.GetTitle()} has been Deleted  seccessfully \n ");
+                _emailNotificationService.SendNotificationOnSucess(findBook.GetTitle(), "Book", "Deleted");
+                // Console.WriteLine($"The book {findBook.GetTitle()} has been Deleted  seccessfully \n ");
             }
             else
             {
-                Console.WriteLine("The book you want to delete is not exist");
+                _emailNotificationService.SendNotificationOnFailure(findBook.GetTitle(), "Book", "Deleting");
+                // Console.WriteLine("The book you want to delete is not exist");
             }
         }
         public void GetBooks(int page) //page number as parameter
@@ -87,12 +97,15 @@ namespace sda_onsite_2_csharp_library_management.src
         {
             if (!_users.Contains(newUser))
             {
+                
                 _users.Add(newUser);
+                _emailNotificationService.SendNotificationOnSucess(newUser.GetName(), "User", "added");
                 // Console.WriteLine($"The User {newUser.GetName() } added successfully");
             }
             else
             {
-                Console.WriteLine("User does not exist");
+                _emailNotificationService.SendNotificationOnFailure(newUser.GetName(), "User", "adding");
+                // Console.WriteLine("User does not exist");
             }
         }
 
@@ -103,11 +116,13 @@ namespace sda_onsite_2_csharp_library_management.src
             if (findUser != null)
             {
                 _users.Remove(findUser);
-                Console.WriteLine($"The user {findUser.GetName()} Deleteed  successfully\n ");
+                _emailNotificationService.SendNotificationOnSucess(findUser.GetName(), "User", "deleted");
+                // Console.WriteLine($"The user {findUser.GetName()} Deleteed  successfully\n ");
             }
             else
             {
-                Console.WriteLine("The user you want to delete is not exist");
+                _emailNotificationService.SendNotificationOnFailure(findUser.GetName(), "User", "deleting");
+                // Console.WriteLine("The user you want to delete is not exist");
             }
         }
         public void GetUesr(int page)

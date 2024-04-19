@@ -69,15 +69,15 @@ var book20 = new Book("Anna Karenina");
 
 ## Level 2 and 3: Setup Notification Service
 
-1. Create an `INotificationService` interface with a method `SendNotificationOnSucess` and `SendNotificationOnFailure`.
-2. Create two different notification service implementations: `EmailNotificationService` and `SMSNotificationService`.
+1. [x] Create an `INotificationService` interface with a method `SendNotificationOnSucess` and `SendNotificationOnFailure`.
+2. [x] Create two different notification service implementations: `EmailNotificationService` and `SMSNotificationService`.
    - EmailNotificationService implementation:
      - SendNotificationOnSuccess: Sends a comprehensive email, including action details, a summary of the item, user feedback instructions, and a support contact. For example, "Hello, a new book titled 'XYZ' has been successfully added to the Library. If you have any queries or feedback, please contact our support team at support@library.com."
      - SendNotificationOnFailure: Provides a detailed error report, troubleshooting steps, and a link to an FAQ or help page. E.g., "We encountered an issue adding 'ABC'. Please review the input data. For more help, visit our FAQ at library.com/faq."
    - SMSNotificationService Implementation:
      - SendNotificationOnSuccess: Sends a brief SMS with action confirmation and a short status update. E.g., "Book 'XYZ' added to Library. Thank you!"
      - SendNotificationOnFailure: Provides a short error notice and a suggestion to contact support via a different channel. E.g., "Error adding User 'ABC'. Please email support@library.com."
-3. Inject INotificationService into the Library class. Send notifications on adding or deleting book/user.
+3. [x] Inject INotificationService into the Library class. Send notifications on adding or deleting book/user.
 4. We will have 2 libraries, using different implementation of notification service. Use all the features above in `Program.cs`
 
    ```
