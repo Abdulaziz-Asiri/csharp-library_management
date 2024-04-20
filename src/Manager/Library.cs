@@ -2,6 +2,7 @@ using System.ComponentModel;
 using System.Xml.XPath;
 using Microsoft.VisualBasic;
 using sda_onsite_2_csharp_library_management.src.service;
+using sda_onsite_2_csharp_library_management.src.abstraction;
 
 namespace sda_onsite_2_csharp_library_management.src
 {
@@ -9,10 +10,14 @@ namespace sda_onsite_2_csharp_library_management.src
     {
         public List<Book> _books = [];
         private List<User> _users = [];
-        private EmailNotificationService _emailNotificationService;
-        public Library(EmailNotificationService emailNotificationService)
+        private INotificationService _emailNotificationService;
+        private INotificationService _smsNotificationService;
+
+        public Library(INotificationService emailNotificationService, INotificationService smsNotificationService)
         {
             _emailNotificationService = emailNotificationService;
+            _smsNotificationService = smsNotificationService;
+
         }
 
         public void FindBook(string title)
@@ -35,11 +40,13 @@ namespace sda_onsite_2_csharp_library_management.src
             {
                 _books.Add(newBook);
                 _emailNotificationService.SendNotificationOnSucess(newBook.GetTitle(), "Book", "added");
+                _smsNotificationService.SendNotificationOnSucess(newBook.GetTitle(), "Book", "added");
                 //  Console.WriteLine($"Book Add Seccessed\n{newBook} ");
             }
             else
             {
                 _emailNotificationService.SendNotificationOnFailure(newBook.GetTitle(), "Book", "adding");
+                _smsNotificationService.SendNotificationOnFailure(newBook.GetTitle(), "Book", "adding");
                 // Console.WriteLine("Book already exists");
             }
         }
@@ -51,11 +58,13 @@ namespace sda_onsite_2_csharp_library_management.src
             {
                 _books.Remove(findBook);
                 _emailNotificationService.SendNotificationOnSucess(findBook.GetTitle(), "Book", "Deleted");
+                _smsNotificationService.SendNotificationOnSucess(findBook.GetTitle(), "Book", "Deleted");
                 // Console.WriteLine($"The book {findBook.GetTitle()} has been Deleted  seccessfully \n ");
             }
             else
             {
                 _emailNotificationService.SendNotificationOnFailure(findBook.GetTitle(), "Book", "Deleting");
+                _smsNotificationService.SendNotificationOnFailure(findBook.GetTitle(), "Book", "Deleting");
                 // Console.WriteLine("The book you want to delete is not exist");
             }
         }
@@ -97,14 +106,16 @@ namespace sda_onsite_2_csharp_library_management.src
         {
             if (!_users.Contains(newUser))
             {
-                
+
                 _users.Add(newUser);
                 _emailNotificationService.SendNotificationOnSucess(newUser.GetName(), "User", "added");
+                _smsNotificationService.SendNotificationOnSucess(newUser.GetName(), "User", "added");
                 // Console.WriteLine($"The User {newUser.GetName() } added successfully");
             }
             else
             {
                 _emailNotificationService.SendNotificationOnFailure(newUser.GetName(), "User", "adding");
+                _smsNotificationService.SendNotificationOnFailure(newUser.GetName(), "User", "adding");
                 // Console.WriteLine("User does not exist");
             }
         }
@@ -117,11 +128,13 @@ namespace sda_onsite_2_csharp_library_management.src
             {
                 _users.Remove(findUser);
                 _emailNotificationService.SendNotificationOnSucess(findUser.GetName(), "User", "deleted");
+                _smsNotificationService.SendNotificationOnSucess(findUser.GetName(), "User", "deleted");
                 // Console.WriteLine($"The user {findUser.GetName()} Deleteed  successfully\n ");
             }
             else
             {
                 _emailNotificationService.SendNotificationOnFailure(findUser.GetName(), "User", "deleting");
+                _smsNotificationService.SendNotificationOnFailure(findUser.GetName(), "User", "deleting");
                 // Console.WriteLine("The user you want to delete is not exist");
             }
         }

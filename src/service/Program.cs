@@ -4,12 +4,14 @@ using System.Net.WebSockets;
 using sda_onsite_2_csharp_library_management.src;
 using sda_onsite_2_csharp_library_management.src.service;
 
+
 internal class Program
 {
     private static void Main()
     {
         var emailService = new EmailNotificationService();
-        Library library = new Library(emailService);
+        var smsService = new SMSNotificationService();
+        Library library = new Library(emailService, smsService);
         var user1 = new User("Alice", new DateTime(2023, 1, 1));
         var user2 = new User("Bob");
         var user3 = new User("Charlie", new DateTime(2023, 3, 1));
